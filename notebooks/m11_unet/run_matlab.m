@@ -3,7 +3,7 @@ clear; clc; close all;
 
 %% Paths
 sampleFile = 'E:\MPL_Data\TRIMMM\Day15\mm_results_D15F_S6B_1.mat';
-onnxFile   = 'C:\Users\user_picm\Desktop\mmTissueFilter\notebok\model_exploration\output_m11_transfer_learning\models\best_model.onnx';
+onnxFile   = 'C:\Users\user_picm\Desktop\mmTissueFilter\notebooks\m11_unet\models\best_model.onnx';
 outputDir  = 'results';
 srcVar     = 'M11Z';
 
