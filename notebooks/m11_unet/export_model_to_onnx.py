@@ -161,7 +161,7 @@ def export_to_onnx(
         }
     )
 
-    logger.info(f"✓ Model exported successfully to: {output_path}")
+    logger.info(f" Model exported successfully to: {output_path}")
     logger.info(f"  Input shape: [batch, 3, {input_size[0]}, {input_size[1]}]")
     logger.info(f"  Output shape: [batch, {num_classes}, {input_size[0]}, {input_size[1]}]")
 
@@ -169,13 +169,13 @@ def export_to_onnx(
     import onnx
     onnx_model = onnx.load(output_path)
     onnx.checker.check_model(onnx_model)
-    logger.info("✓ ONNX model verified successfully")
+    logger.info(" ONNX model verified successfully")
 
 
 if __name__ == "__main__":
     # Configuration - adjust these to match your trained model
-    CHECKPOINT_PATH = "models/best_model.pth"
-    OUTPUT_PATH = "models/model.onnx"
+    CHECKPOINT_PATH = "../../models/best_model.pth"
+    OUTPUT_PATH = "../../models/model.onnx"
     ENCODER_NAME = 'resnet34'
     NUM_CLASSES = 2
     INPUT_SIZE = (512, 512)

@@ -81,7 +81,7 @@ class UNetWithPretrainedEncoder(nn.Module):
         d0 = self.decoder0(d0)
         return self.final_conv(d0)
 
-def run_inference(m11_mat_path: str, out_mat_path: str, model_path: str = 'models/best_model.pth'):
+def run_inference(m11_mat_path: str, out_mat_path: str, model_path: str = '../../models/best_model.pth'):
     from scipy.io import loadmat, savemat
 
     data = loadmat(m11_mat_path)
@@ -134,5 +134,5 @@ if __name__ == '__main__':
         sys.exit(1)
     in_mat = sys.argv[1]
     out_mat = sys.argv[2]
-    model_p = sys.argv[3] if len(sys.argv) > 3 else 'models/best_model.pth'
+    model_p = sys.argv[3] if len(sys.argv) > 3 else '../../models/best_model.pth'
     run_inference(in_mat, out_mat, model_p)
