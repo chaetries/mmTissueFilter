@@ -113,7 +113,7 @@ class TissueAnnotatorGUI(QMainWindow):
         control_panel = QWidget()
         control_layout = QVBoxLayout()
         control_panel.setLayout(control_layout)
-        control_panel.setMaximumWidth(300)
+        control_panel.setMaximumWidth(400)
 
         control_layout.addWidget(self._create_file_group())
         control_layout.addWidget(self._create_mask_type_group())
@@ -168,6 +168,11 @@ class TissueAnnotatorGUI(QMainWindow):
         self.btn_add_mask_type.clicked.connect(self.add_mask_type)
         self.btn_add_mask_type.setEnabled(False)
         mask_type_layout.addWidget(self.btn_add_mask_type)
+
+        self.btn_delete_mask_type = QPushButton("Delete Mask Type")
+        self.btn_delete_mask_type.clicked.connect(self.delete_mask_type)
+        self.btn_delete_mask_type.setEnabled(False)
+        mask_type_layout.addWidget(self.btn_delete_mask_type)
 
         mask_type_group.setLayout(mask_type_layout)
         return mask_type_group
@@ -315,6 +320,7 @@ class TissueAnnotatorGUI(QMainWindow):
             self.btn_undo.setEnabled(True)
             self.btn_clear.setEnabled(True)
             self.btn_add_mask_type.setEnabled(True)
+            self.btn_delete_mask_type.setEnabled(True)
 
             self.change_parameter(self.data_manager.param_names[0])
 
@@ -340,6 +346,38 @@ class TissueAnnotatorGUI(QMainWindow):
                     QMessageBox.information(self, "Success", f"Mask type '{new_type}' added successfully")
                 else:
                     QMessageBox.warning(self, "Error", f"Mask type '{new_type}' already exists")
+
+    def delete_mask_type(self):
+        """Delete the current mask type"""
+        current_type = self.mask_type_combo.currentText()
+
+        if not current_type:
+            QMessageBox.warning(self, "Error", "No mask type selected")
+            return
+
+        # Confirm deletion
+        reply = QMessageBox.question(
+            self, "Delete Mask Type",
+            f"Are you sure you want to delete the '{current_type}' mask type?\n"
+            f"This will remove all annotations for this mask type.",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            success, message = self.data_manager.delete_mask_type(current_type)
+
+            if success:
+                # Remove from combo box
+                index = self.mask_type_combo.findText(current_type)
+                if index >= 0:
+                    self.mask_type_combo.removeItem(index)
+
+                # Switch to 'tissue' mask
+                self.mask_type_combo.setCurrentText('tissue')
+
+                QMessageBox.information(self, "Success", message)
+            else:
+                QMessageBox.warning(self, "Error", message)
 
     def change_mask_type(self, mask_type):
         """Switch to a different mask type"""

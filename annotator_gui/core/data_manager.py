@@ -74,6 +74,25 @@ class DataManager:
             return True
         return False
 
+    def delete_mask_type(self, mask_type):
+        """Delete a mask type"""
+        # Cannot delete the default 'tissue' mask
+        if mask_type == 'tissue':
+            return False, "Cannot delete the default 'tissue' mask type"
+
+        # Check if mask type exists
+        if mask_type not in self.available_mask_types:
+            return False, f"Mask type '{mask_type}' does not exist"
+
+        # Remove from all data structures
+        self.available_mask_types.remove(mask_type)
+        if mask_type in self.masks:
+            del self.masks[mask_type]
+        if mask_type in self.mask_history:
+            del self.mask_history[mask_type]
+
+        return True, f"Mask type '{mask_type}' deleted successfully"
+
     def get_current_mask(self):
         """Get the current mask"""
         return self.masks.get(self.current_mask_type)
