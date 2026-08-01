@@ -1,4 +1,4 @@
-# mmTissueFilter - Mueller Matrix Tissue Segmentation
+# mmTissueFilter - M11 Tissue Segmentation
 
 mmTissueFilter is a tissue-mask annotation, training, evaluation, and inference
 project for Mueller Matrix microscopy images. It supports manual mask creation,
