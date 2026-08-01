@@ -29,6 +29,20 @@ The repository includes:
 See [CHANGELOG.md](CHANGELOG.md) for a record of dataset/model revisions,
 including sample exclusions and split changes affecting reproducibility.
 
+## Citation
+
+If you use this repository or the associated tissue segmentation model, please
+cite:
+
+```bibtex
+@article{chae2026intensity,
+  title={Intensity-based Segmentation of Tissue Images Using a U-Net with a Pretrained ResNet-34 Encoder: Application to Mueller Microscopy},
+  author={Chae, Sooyong and Giammattei, Dani and Ajmal, Ajmal and Pei, Junzhu and Sanchez, Amanda and Boonya-ananta, Tananant and Rodriguez, Andres and Novikova, Tatiana and Ramella-Roman, Jessica},
+  journal={arXiv preprint arXiv:2602.09787},
+  year={2026}
+}
+```
+
 ## Prerequisites
 
 Ensure you have Python installed (tested with Python 3.8+). You can install the required dependencies using:
