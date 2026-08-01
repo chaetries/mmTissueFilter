@@ -1,6 +1,33 @@
-# mmTissueFilter - Tissue Annotation & Analysis
+# mmTissueFilter - Mueller Matrix Tissue Segmentation
 
-This project provides tools for annotating tissue regions in Mueller Matrix images, training a U-Net model for segmentation, and running inference using the trained model.
+mmTissueFilter is a tissue-mask annotation, training, evaluation, and inference
+project for Mueller Matrix microscopy images. It supports manual mask creation,
+deep-learning segmentation of tissue/background classes, trained-model
+inference, and reproducible model comparisons on a fixed train/validation/test
+split.
+
+The current segmentation workflow uses Mueller Matrix image composites and
+ground-truth masks to train multiclass models for:
+
+- Background
+- Tissue
+- OS
+- Vaginal
+
+The repository includes:
+
+- `annotator_gui/`: PyQt annotation tool for creating or editing tissue masks.
+- `notebooks/m11_unet/`: original U-Net training and test-analysis notebooks.
+- `notebooks/model_comparison/`: model-comparison training, test analysis, and
+  inference-speed benchmarking.
+- `models/`: trained split metadata, training histories, selected visualizations,
+  and model checkpoints.
+- `results/model_comparison/`: CSV, figure, PDF, and per-sample outputs from the
+  model-comparison analysis.
+- `run_trained/`: Python and MATLAB demo wrappers for applying a trained model.
+
+See [CHANGELOG.md](CHANGELOG.md) for a record of dataset/model revisions,
+including sample exclusions and split changes affecting reproducibility.
 
 ## Prerequisites
 
@@ -16,6 +43,8 @@ Common dependencies include:
 - `PyQt5` (for the annotation GUI)
 - `matplotlib`, `Pillow` (for visualization)
 - `jupyter` (to run notebooks)
+- `segmentation-models-pytorch` (for U-Net++, DeepLabV3+, and comparison
+  models)
 
 ---
 
@@ -55,9 +84,98 @@ jupyter notebook notebooks/m11_unet/m11_unet_training.ipynb
 3.  Run the cells to train the model.
 4.  The best model weights will be saved to `models/best_model.pth`.
 
+The fixed split used by the current model artifacts is stored in
+`models/data_split.json`:
+
+- Train: 51 samples
+- Validation: 11 samples
+- Test: 12 samples
+
+### Test Samples
+
+The shared test set is:
+
+- `Day0_mm_results_Day0H_2B_S7`
+- `Day15_mm_results_D15C_S6A_2`
+- `Day14_mm_results_D14D_S8A_3`
+- `Day6_mm_results_Day6D_8B_S3`
+- `Day18_mm_results_D18E_S2A_1`
+- `Day15_mm_results_D15F_S6B_2`
+- `Day15_mm_results_Day15F_S6B_3`
+- `Day13_mm_results_D13D_S9A_5`
+- `Day12_mm_results_Day12D_9B_S2`
+- `Day0_mm_results_Day0G_8B_S2`
+- `Day15_mm_results_D15F_S6B_5`
+- `Day6_mm_results_day6_4`
+
 ---
 
-## 3. Running Trained Model
+## 3. Model Comparison
+
+The model-comparison workflow evaluates multiple segmentation methods on the
+same split and metrics:
+
+- Published U-Net with pretrained ResNet34 encoder
+- U-Net with ResNet34 encoder trained from scratch
+- U-Net++ with pretrained ResNet34 encoder
+- U-Net++ with ResNet34 encoder trained from scratch
+- DeepLabV3+ with pretrained ResNet34 encoder
+- DeepLabV3+ with ResNet34 encoder trained from scratch
+- Random Forest pixel classifier for the extended test-analysis notebook
+
+Run the main comparison notebook with:
+
+```bash
+jupyter notebook notebooks/model_comparison/model_comparison.ipynb
+```
+
+Run the detailed test-set analysis with:
+
+```bash
+jupyter notebook notebooks/model_comparison/model_comparison_test_analysis.ipynb
+```
+
+Run inference-speed benchmarking with:
+
+```bash
+python notebooks/model_comparison/benchmark_inference_speed.py
+```
+
+Primary outputs are written under `results/model_comparison/`, including:
+
+- `comparison_summary_table.csv`
+- `per_sample_results_all_models.csv`
+- `model_comparison.png`
+- `inference_speed.csv`
+- `inference_speed.json`
+- `test_analysis/summary_table.csv`
+- `test_analysis/per_sample_all_models.csv`
+- `test_analysis/all_test_samples_comparison.pdf`
+
+Current comparison summary on the shared test set:
+
+| Model | Pixel Accuracy | Mean Tissue DSC |
+| --- | ---: | ---: |
+| U-Net pretrained published | 0.9022 +/- 0.0431 | 0.8110 +/- 0.1345 |
+| U-Net no pretrained | 0.8218 +/- 0.0783 | 0.6288 +/- 0.1690 |
+| U-Net++ pretrained | 0.9086 +/- 0.0439 | 0.8096 +/- 0.1461 |
+| U-Net++ no pretrained | 0.8346 +/- 0.0936 | 0.6669 +/- 0.1683 |
+| DeepLabV3+ pretrained | 0.9047 +/- 0.0441 | 0.8002 +/- 0.1287 |
+| DeepLabV3+ no pretrained | 0.8246 +/- 0.0994 | 0.6611 +/- 0.1607 |
+
+Inference benchmark summary for one 512 x 512 forward pass:
+
+| Model | Parameters | GPU ms | CPU ms |
+| --- | ---: | ---: | ---: |
+| U-Net pretrained published | 24.94M | 7.58 | 170.30 |
+| U-Net no pretrained | 24.44M | 6.67 | 169.73 |
+| U-Net++ pretrained | 26.08M | 14.34 | 301.01 |
+| DeepLabV3+ pretrained | 22.44M | 9.69 | 138.67 |
+| Random Forest classical | 36,320,630 tree nodes | n/a | 779.67 |
+
+---
+
+## 4. Running Trained Model
 
 You can run the trained model to perform segmentation on new images using either Python or MATLAB.
 

@@ -1,0 +1,43 @@
+[
+  {
+    "model": "UNet_Pretrained_Published",
+    "params_M": 24.94334,
+    "gpu_ms": 7.578363316133618,
+    "gpu_std": 2.3364021211055324,
+    "cpu_ms": 170.3041299711913,
+    "cpu_std": 9.095522110656468
+  },
+  {
+    "model": "UNet_NoPretrained",
+    "params_M": 24.436804,
+    "gpu_ms": 6.67198000010103,
+    "gpu_std": 0.42358509100413716,
+    "cpu_ms": 169.73390331647047,
+    "cpu_std": 15.555826561473179
+  },
+  {
+    "model": "UNetPlusPlus_Pretrained",
+    "params_M": 26.079044,
+    "gpu_ms": 14.344543303983906,
+    "gpu_std": 1.5583457610069558,
+    "cpu_ms": 301.0127499854813,
+    "cpu_std": 10.067807442248734
+  },
+  {
+    "model": "DeepLabV3Plus_Pretrained",
+    "params_M": 22.438228,
+    "gpu_ms": 9.689753308581809,
+    "gpu_std": 6.119332288784948,
+    "cpu_ms": 138.67030333882818,
+    "cpu_std": 15.354067897908601
+  },
+  {
+    "model": "RandomForest_Classical",
+    "params_M": null,
+    "tree_nodes": 36320630,
+    "gpu_ms": null,
+    "gpu_std": null,
+    "cpu_ms": 779.6652299817652,
+    "cpu_std": 33.273370671128845
+  }
+]

@@ -1,0 +1,11 @@
+mm_results_D14C_S8A_3	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_D14C_S8A_3\TRIMMM.npz
+mm_results_D15C_S5A_2	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_D15C_S5A_2\TRIMMM.npz
+mm_results_D15C_S6A_2	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_D15C_S6A_2\TRIMMM.npz
+mm_results_D15E_S7B_3	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_D15E_S7B_3\TRIMMM.npz
+mm_results_D15E_S7B_5	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_D15E_S7B_5\TRIMMM.npz
+mm_results_Day0F_7B_S2	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_Day0F_7B_S2\TRIMMM.npz
+mm_results_Day0G_7B_S3	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_Day0G_7B_S3\TRIMMM.npz
+mm_results_Day0H_4B_S5	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_Day0H_4B_S5\TRIMMM.npz
+mm_results_Day12F_5B_S6	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_Day12F_5B_S6\TRIMMM.npz
+mm_results_Day14D_5A_3	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_Day14D_5A_3\TRIMMM.npz
+mm_results_day15E_S7B_2	E:\MPL_Data\mmNoTissueFilter\testing\mm_results_day15E_S7B_2\TRIMMM.npz
