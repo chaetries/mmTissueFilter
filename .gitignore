@@ -1,0 +1,45 @@
+# IDE configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Model outputs and results (generated during training/inference)
+results/
+analysis/
+inference_output/
+
+# Model files (if large)
+*.pth
+*.h5
+*.hdf5
+*.onnx
+
+# Data files
+*.npz
+*.npy
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+data_split_info.txt
+temp_sample_isolation/
