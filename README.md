@@ -1,10 +1,14 @@
 # mmTissueFilter - M11 Tissue Segmentation
 
+![Representative M11 tissue segmentation result](run_trained/sample_plot.png)
+
 mmTissueFilter is a tissue-mask annotation, training, evaluation, and inference
 project for Mueller Matrix microscopy images. It supports manual mask creation,
-deep-learning segmentation of tissue/background classes, trained-model
-inference, and reproducible model comparisons on a fixed train/validation/test
-split.
+deep-learning segmentation of background, tissue, OS, and vaginal regions,
+trained-model inference from Python or MATLAB, and reproducible model
+comparisons on a fixed train/validation/test split. The included artifacts
+provide trained checkpoints, split metadata, test-set visualizations, and demo
+outputs for applying the model to representative M11 images.
 
 The current segmentation workflow uses Mueller Matrix image composites and
 ground-truth masks to train multiclass models for:
