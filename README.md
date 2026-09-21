@@ -39,12 +39,14 @@ If you use this repository or the associated tissue segmentation model, please
 cite:
 
 ```bibtex
-@article{chae2026intensity,
-  title={Intensity-based Segmentation of Tissue Images Using a U-Net with a Pretrained ResNet-34 Encoder: Application to Mueller Microscopy},
-  author={Chae, Sooyong and Giammattei, Dani and Ajmal, Ajmal and Pei, Junzhu and Sanchez, Amanda and Boonya-ananta, Tananant and Rodriguez, Andres and Novikova, Tatiana and Ramella-Roman, Jessica},
-  journal={arXiv preprint arXiv:2602.09787},
-  year={2026}
+@article{chae2026microscopy,
+  title={Microscopy image segmentation using a fine-tuned machine learning model with limited training dataset},
+  author={Chae, Sooyong and Giammattei, Dani and Ajmal, Ajmal and Pei, Junzhu and Sanchez, Amanda and Boonya-ananta, Tananant and Rodriguez, Andres and Ramella-Roman, Jessica C and Novikova, Tatiana},
+  journal={Journal of Microscopy},
+  year={2026},
+  publisher={Wiley Online Library}
 }
+
 ```
 
 ## Prerequisites
